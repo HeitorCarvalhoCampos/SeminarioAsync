@@ -1,24 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import SearchBar from './components/SearchBar/SearchBar'; 
+
+import Information from './components/Information/Information';
+
+
+interface Informacao {
+  temperatura: string;
+  condicao: string;
+  bairro: string;
+}
+
+
 
 function App() {
+  const apiKey = "1663760659498a69525148f4061c7d65";
+  const [informacoes, setInformacoes] = useState<Informacao[]>([]);
+
+  useEffect(() => {
+    if (informacoes.length === 0) { 
+      obterLocalizacao();
+    }
+  }, [informacoes]); 
+
+function obterLocalizacao() {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt`)
+        .then(response => response.json())
+        .then(weather => {
+          const novaInformacao: Informacao = {
+            temperatura: weather.main.temp + "°C",
+            condicao: weather.weather[0].description,
+            bairro: weather.name,
+          };
+          setInformacoes(prevInformacoes => [novaInformacao]);
+        })
+        .catch(error => console.error("Erro ao obter clima:", error));
+    }, (error) => {
+      console.error("Erro ao obter localização", error);
+    });
+  } else {
+    console.log("Geolocalização não disponível no navegador.");
+  }
+}
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="div-logo">
+        <img className='logo' src={process.env.PUBLIC_URL + "/mundo-clima.png"} alt="Mundo Clima" />
+      </div>
+      <div className="div-informations">
+        <Information informacoes={informacoes} />
+      </div>
     </div>
   );
 }
