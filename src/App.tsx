@@ -32,6 +32,7 @@ function obterLocalizacao() {
       fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt`)
         .then(response => response.json())
         .then(weather => {
+          console.log(weather);
           const novaInformacao: Informacao = {
             temperatura: weather.main.temp + "°C",
             condicao: weather.weather[0].description,
@@ -50,10 +51,11 @@ function obterLocalizacao() {
 
   return (
     <div className="App">
-      <div className="div-logo">
+      <div className="divLogo">
         <img className='logo' src={process.env.PUBLIC_URL + "/mundo-clima.png"} alt="Mundo Clima" />
+        <SearchBar/>
       </div>
-      <div className="div-informations">
+      <div className="divInformations">
         <Information informacoes={informacoes} />
       </div>
     </div>

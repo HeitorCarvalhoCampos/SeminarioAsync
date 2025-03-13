@@ -45,3 +45,15 @@
 .logo {
   margin-top: 30px;
 }
+
+.divInformations {
+  display: flex;
+  justify-content: center;
+}
+
+.divLogo {
+  display: flex;
+  justify-content: left;
+  margin: auto 0;
+  margin-left: 20px;
+}
