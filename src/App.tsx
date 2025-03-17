@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar'; 
-
 import Information from './components/Information/Information';
-
 
 interface Informacao {
   temperatura: string;
@@ -52,7 +50,7 @@ function obterLocalizacao() {
   return (
     <div className="App">
       <div className="divLogo">
-        <img className='logo' src={process.env.PUBLIC_URL + "/mundo-clima.png"} alt="Mundo Clima" />
+        <img className='logo' src={process.env.PUBLIC_URL + "/logo-climorld.png"} alt="Mundo Clima" />
         <SearchBar/>
       </div>
       <div className="divInformations">

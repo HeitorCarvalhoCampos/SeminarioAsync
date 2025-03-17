@@ -43,7 +43,9 @@
 }
 
 .logo {
-  margin-top: 30px;
+  margin-top: 5px;
+  width: 230px;
+  margin-left: 20px;
 }
 
 .divInformations {
@@ -53,7 +55,9 @@
 
 .divLogo {
   display: flex;
-  justify-content: left;
   margin: auto 0;
-  margin-left: 20px;
+  margin-bottom: 50px;
+  background-color: #015486;
+  padding-bottom: 5px;
+  justify-content: space-between;
 }

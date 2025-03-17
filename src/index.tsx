@@ -9,6 +9,17 @@ const root = ReactDOM.createRoot(
 );
 
 document.documentElement.lang = 'pt-BR';
+document.title = 'Climorld';
+
+const existingLink = document.querySelector("link[rel='icon']");
+if (existingLink) {
+  existingLink.remove();
+}
+
+const link = document.createElement("link");
+link.rel = "icon";
+link.href = process.env.PUBLIC_URL + "/icon.png";
+document.head.appendChild(link);
 
 root.render(
   <React.StrictMode>
