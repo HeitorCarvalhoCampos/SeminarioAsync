@@ -4,16 +4,31 @@ import SearchBar from './components/SearchBar/SearchBar';
 import Information from './components/Information/Information';
 
 interface Informacao {
+  cidade: string;
   temperatura: string;
-  condicao: string;
-  bairro: string;
+  descricao: string;
+  diaSemana: string;
+  umidade: string;
+  chuva: string;
+  vento: string;
+  icon: string;
 }
 
 
 
+
 function App() {
-  const apiKey = "1663760659498a69525148f4061c7d65";
+  const apiKey = "d8235fe0545e4dd8adf7186f2c647f73";
   const [informacoes, setInformacoes] = useState<Informacao[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const today = new Date();
+
+  function handleSearch(query: string) {
+    console.log("Recebido no componente pai:", query);
+    setSearchQuery(query);
+    // Aqui você pode chamar uma API ou atualizar a interface
+  }
+
 
   useEffect(() => {
     if (informacoes.length === 0) { 
@@ -27,14 +42,19 @@ function obterLocalizacao() {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
 
-      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt`)
+      fetch(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${apiKey}`)
         .then(response => response.json())
         .then(weather => {
           console.log(weather);
           const novaInformacao: Informacao = {
-            temperatura: weather.main.temp + "°C",
-            condicao: weather.weather[0].description,
-            bairro: weather.name,
+            cidade: weather.data[0].city_name,
+            temperatura: weather.data[0].temp.toString(),
+            descricao: weather.data[0].weather.description,
+            diaSemana: today.toLocaleDateString('pt-BR', { weekday: 'long' }).charAt(0).toUpperCase() + today.toLocaleDateString('pt-BR', { weekday: 'long' }).slice(1),
+            umidade: weather.data[0].rh.toString(),
+            chuva: weather.data[0].precip.toString(),
+            vento: weather.data[0].wind_spd.toString(),
+            icon: weather.data[0].weather.icon,
           };
           setInformacoes(prevInformacoes => [novaInformacao]);
         })
@@ -51,7 +71,7 @@ function obterLocalizacao() {
     <div className="App">
       <div className="divLogo">
         <img className='logo' src={process.env.PUBLIC_URL + "/logo-climorld.png"} alt="Mundo Clima" />
-        <SearchBar/>
+        <SearchBar onSearch={handleSearch} />
       </div>
       <div className="divInformations">
         <Information informacoes={informacoes} />
