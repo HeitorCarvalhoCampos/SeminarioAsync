@@ -1,0 +1,16 @@
+.dayElement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f1f1f1; /* Cor mais suave */
+    padding: 10px;
+    width: 80px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dayText {
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
