@@ -3,14 +3,10 @@ import DayElement from "../DayElement/DayElement";
 
 interface WeekInformation {
   data: string;
-  high_temp: string;
-  low_temp: string;
   max_temp: string;
   min_temp: string;
   condicao: string;
-  wind_speed: number;
-  humidity: number;
-  rain: number;
+  icon: string;
 }
 
 interface WeekInformationProps {
