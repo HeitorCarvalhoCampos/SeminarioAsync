@@ -44,6 +44,9 @@ function Information({ informacoes }: InformationProps) {
         {informacoes.length !== 0 ? (
           informacoes.map((informacao, index) => (
             <div key={index} className={styles.divInfo}>
+              <div className={styles.divCidade}>
+                <p className={styles.cidade}>{informacao.cidade}</p>
+              </div>
               <div className={styles.divResultado}>
                 <div>
                   <img className={styles.icon} src={`https://www.weatherbit.io/static/img/icons/${informacoes[0].icon}.png`} alt="Icone do Clima" />
@@ -58,13 +61,11 @@ function Information({ informacoes }: InformationProps) {
                     <p className={styles.extra}>Vento: {informacao.vento} km/h</p>
                   </div>
                 </div>
-              </div>
-              
-
-              <p className={styles.cidade}>Cidade: {informacao.cidade}</p>
-              <p className={styles.descricao}>Descrição: {translatedDescriptions[index] || "Aguarde..."}</p>
-              <p className={styles.diaSemana}>Dia da semana: {informacao.diaSemana}</p>
-              
+                <div className={styles.divDescricao}>
+                  <p className={styles.descricao}>{translatedDescriptions[index] || "Aguarde..."}</p>
+                  <p className={styles.diaSemana}>{informacao.diaSemana}</p>
+                </div>
+              </div>    
             </div>
           ))
         ) : (

@@ -19,7 +19,7 @@ function SearchBar({onSearch}: SearchBarProps) {
       <input 
         className={styles.input} 
         type="text" 
-        placeholder="Pesquise uma cidade ou bairro..." 
+        placeholder="Pesquise uma cidade" 
         value={query} onChange={(e) => setQuery(e.target.value)} 
       />
       <button className={styles.button} type="submit">

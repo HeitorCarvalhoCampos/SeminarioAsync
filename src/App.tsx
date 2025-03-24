@@ -26,7 +26,23 @@ function App() {
   function handleSearch(query: string) {
     console.log("Recebido no componente pai:", query);
     setSearchQuery(query);
-    // Aqui você pode chamar uma API ou atualizar a interface
+    fetch(`https://api.weatherbit.io/v2.0/current?city=${query}&key=${apiKey}`)
+      .then(response => response.json())
+      .then(weather => {
+        console.log(weather);
+        const novaInformacao: Informacao = {
+          cidade: weather.data[0].city_name,
+          temperatura: weather.data[0].temp.toString(),
+          descricao: weather.data[0].weather.description,
+          diaSemana: today.toLocaleDateString('pt-BR', { weekday: 'long' }).charAt(0).toUpperCase() + today.toLocaleDateString('pt-BR', { weekday: 'long' }).slice(1),
+          umidade: weather.data[0].rh.toString(),
+          chuva: weather.data[0].precip.toString(),
+          vento: weather.data[0].wind_spd.toString(),
+          icon: weather.data[0].weather.icon
+        };
+        setInformacoes([novaInformacao]);
+      })
+      .catch(error => console.error(error));
   }
 
 
