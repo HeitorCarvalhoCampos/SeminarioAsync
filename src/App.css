@@ -57,7 +57,11 @@
   display: flex;
   margin: auto 0;
   margin-bottom: 50px;
-  background-color: #015486;
+  background: linear-gradient(90deg, #015486 30%, #083551 70%);
   padding-bottom: 5px;
   justify-content: space-between;
+}
+
+.divWeek {
+  margin-top: 50px;
 }
