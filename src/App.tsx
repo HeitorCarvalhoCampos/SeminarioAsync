@@ -35,7 +35,6 @@ function App() {
     fetch(`https://api.weatherbit.io/v2.0/current?city=${query}&key=${apiKey}`)
       .then(response => response.json())
       .then(weather => {
-        console.log(weather);
         const novaInformacao: Informacao = {
           cidade: weather.data[0].city_name,
           temperatura: weather.data[0].temp.toString(),
@@ -62,7 +61,7 @@ function App() {
 
           const informacoes: WeekInformation[] = weather.data.map(
             (dia: any) => ({
-              data: dia.datetime,
+              data: getDayOfWeek(dia.datetime),
               max_temp: dia.max_temp + "°C",
               min_temp: dia.min_temp + "°C",
               condicao: dia.weather.description,
@@ -93,7 +92,6 @@ function App() {
           )
             .then((response) => response.json())
             .then((weather) => {
-              console.log(weather);
               const novaInformacao: Informacao = {
                 cidade: weather.data[0].city_name,
                 temperatura: weather.data[0].temp.toString(),
@@ -124,10 +122,10 @@ function App() {
                   console.error("Dados insuficientes da previsão do tempo.");
                   return;
                 }
-  
+                
                 const informacoes: WeekInformation[] = weather.data.map(
                   (dia: any) => ({
-                    data: dia.datetime,
+                    data: getDayOfWeek(dia.datetime),
                     max_temp: dia.max_temp + "°C",
                     min_temp: dia.min_temp + "°C",
                     condicao: dia.weather.description,
@@ -147,6 +145,17 @@ function App() {
       console.log("Geolocalização não disponível no navegador.");
     }
   }
+
+  function getDayOfWeek(dataString: string) {
+    const data = new Date(dataString);
+
+    const diasSemana = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
+
+    const indiceDiaSemana = data.getDay();
+
+    return diasSemana[indiceDiaSemana];
+  }
+
 
   return (
     <div className="App">
