@@ -1,8 +1,24 @@
 .weekBar {
     display: flex;
-    flex-direction: row; /* Deixa os dias lado a lado */
-    justify-content: space-between;
-    gap: 10px;
-    overflow-x: auto; /* Permite rolagem horizontal se necessário */
+    gap: 15px;
+    overflow-x: auto;
     padding: 10px;
+    height: fit-content;
+    justify-content: center; /* Centraliza os cards na tela */
+    scrollbar-width: thin; /* Deixa a barra de rolagem mais discreta */
+    scrollbar-color: #ccc transparent;
+}
+
+/* Personaliza a barra de rolagem para navegadores Webkit */
+.weekBar::-webkit-scrollbar {
+    height: 8px;
+}
+
+.weekBar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.weekBar::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
 }

@@ -1,16 +1,42 @@
 .dayElement {
     display: flex;
     flex-direction: column;
+    background-color: #015486;
+    padding: 15px;
+    height: 165px;
+    width: 100px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     align-items: center;
-    background-color: #f1f1f1; /* Cor mais suave */
-    padding: 10px;
-    width: 80px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .dayText {
     font-size: 14px;
-    color: #333;
-    text-align: center;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.divimg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+}
+
+.temp {
+    font-size: 16px;
+    font-weight: bold;
+    color: #015486;
+}
+
+.minTemp {
+    font-size: 14px;
+    font-weight: bold;
+    color: #c4c3c3;
 }

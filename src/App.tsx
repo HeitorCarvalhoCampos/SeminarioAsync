@@ -17,14 +17,10 @@ interface Informacao {
 
 interface WeekInformation {
   data: string;
-  high_temp: string;
-  low_temp: string;
   max_temp: string;
   min_temp: string;
   condicao: string;
-  wind_speed: number;
-  humidity: number;
-  rain: number;
+  icon: string;
 }
 
 function App() {
@@ -67,14 +63,10 @@ function App() {
           const informacoes: WeekInformation[] = weather.data.map(
             (dia: any) => ({
               data: dia.datetime,
-              high_temp: dia.high_temp + "°C",
-              low_temp: dia.low_temp + "°C",
               max_temp: dia.max_temp + "°C",
               min_temp: dia.min_temp + "°C",
               condicao: dia.weather.description,
-              wind_speed: dia.wind_spd,
-              humidity: dia.rh,
-              rain: dia.precip,
+              icon: dia.weather.icon,
             })
           );
 
@@ -136,14 +128,10 @@ function App() {
                 const informacoes: WeekInformation[] = weather.data.map(
                   (dia: any) => ({
                     data: dia.datetime,
-                    high_temp: dia.high_temp + "°C",
-                    low_temp: dia.low_temp + "°C",
                     max_temp: dia.max_temp + "°C",
                     min_temp: dia.min_temp + "°C",
                     condicao: dia.weather.description,
-                    wind_speed: dia.wind_spd,
-                    humidity: dia.rh,
-                    rain: dia.precip,
+                    icon: dia.weather.icon,
                   })
                 );
   
