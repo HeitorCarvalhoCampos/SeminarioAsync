@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import App from '../../App'
 import styles from './Information.module.css'
 
 interface Informacao {
