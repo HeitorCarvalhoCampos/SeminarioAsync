@@ -35,9 +35,52 @@ function App() {
   const today = new Date();
 
   function handleSearch(query: string) {
-    console.log("Recebido no componente pai:", query);
     setSearchQuery(query);
-    // Aqui você pode chamar uma API ou atualizar a interface
+    fetch(`https://api.weatherbit.io/v2.0/current?city=${query}&key=${apiKey}`)
+      .then(response => response.json())
+      .then(weather => {
+        console.log(weather);
+        const novaInformacao: Informacao = {
+          cidade: weather.data[0].city_name,
+          temperatura: weather.data[0].temp.toString(),
+          descricao: weather.data[0].weather.description,
+          diaSemana: today.toLocaleDateString('pt-BR', { weekday: 'long' }).charAt(0).toUpperCase() + today.toLocaleDateString('pt-BR', { weekday: 'long' }).slice(1),
+          umidade: weather.data[0].rh.toString(),
+          chuva: weather.data[0].precip.toString(),
+          vento: weather.data[0].wind_spd.toString(),
+          icon: weather.data[0].weather.icon
+        };
+        setInformacoes([novaInformacao]);
+      })
+      .catch(error => console.error(error));
+
+      fetch(
+        `https://api.weatherbit.io/v2.0/forecast/daily?city=${query}&key=${apiKey}`
+      )
+        .then((response) => response.json())
+        .then((weather) => {
+          if (!weather.data || weather.data.length < 8) {
+            console.error("Dados insuficientes da previsão do tempo.");
+            return;
+          }
+
+          const informacoes: WeekInformation[] = weather.data.map(
+            (dia: any) => ({
+              data: dia.datetime,
+              high_temp: dia.high_temp + "°C",
+              low_temp: dia.low_temp + "°C",
+              max_temp: dia.max_temp + "°C",
+              min_temp: dia.min_temp + "°C",
+              condicao: dia.weather.description,
+              wind_speed: dia.wind_spd,
+              humidity: dia.rh,
+              rain: dia.precip,
+            })
+          );
+
+          setWeekInformacoes(informacoes);
+        })
+        .catch((error) => console.error("Erro ao obter clima:", error));
   }
 
   useEffect(() => {
@@ -45,12 +88,6 @@ function App() {
       obterLocalizacao();
     }
   }, [informacoes]);
-
-  useEffect(() => {
-    if (weekInformacoes.length === 0) {
-      obterWeekInformacoes();
-    }
-  }, [weekInformacoes]);
 
   function obterLocalizacao() {
     if ("geolocation" in navigator) {
@@ -85,50 +122,34 @@ function App() {
               setInformacoes((prevInformacoes) => [novaInformacao]);
             })
             .catch((error) => console.error("Erro ao obter clima:", error));
-        },
-        (error) => {
-          console.error("Erro ao obter localização", error);
-        }
-      );
-    } else {
-      console.log("Geolocalização não disponível no navegador.");
-    }
-  }
 
-  function obterWeekInformacoes() {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-
-          fetch(
-            `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${apiKey}`
-          )
-            .then((response) => response.json())
-            .then((weather) => {
-              if (!weather.data || weather.data.length < 8) {
-                console.error("Dados insuficientes da previsão do tempo.");
-                return;
-              }
-
-              const informacoes: WeekInformation[] = weather.data.map(
-                (dia: any) => ({
-                  data: dia.datetime,
-                  high_temp: dia.high_temp + "°C",
-                  low_temp: dia.low_temp + "°C",
-                  max_temp: dia.max_temp + "°C",
-                  min_temp: dia.min_temp + "°C",
-                  condicao: dia.weather.description,
-                  wind_speed: dia.wind_spd,
-                  humidity: dia.rh,
-                  rain: dia.precip,
-                })
-              );
-
-              setWeekInformacoes(informacoes);
-            })
-            .catch((error) => console.error("Erro ao obter clima:", error));
+            fetch(
+              `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${apiKey}`
+            )
+              .then((response) => response.json())
+              .then((weather) => {
+                if (!weather.data || weather.data.length < 8) {
+                  console.error("Dados insuficientes da previsão do tempo.");
+                  return;
+                }
+  
+                const informacoes: WeekInformation[] = weather.data.map(
+                  (dia: any) => ({
+                    data: dia.datetime,
+                    high_temp: dia.high_temp + "°C",
+                    low_temp: dia.low_temp + "°C",
+                    max_temp: dia.max_temp + "°C",
+                    min_temp: dia.min_temp + "°C",
+                    condicao: dia.weather.description,
+                    wind_speed: dia.wind_spd,
+                    humidity: dia.rh,
+                    rain: dia.precip,
+                  })
+                );
+  
+                setWeekInformacoes(informacoes);
+              })
+              .catch((error) => console.error("Erro ao obter clima:", error));
         },
         (error) => {
           console.error("Erro ao obter localização", error);
