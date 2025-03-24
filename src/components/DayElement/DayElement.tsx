@@ -19,8 +19,10 @@ function DayElement({dayInformations}: DayInformationProps) {
             <div className={styles.divimg}>
               <img className={styles.icon} src={`https://www.weatherbit.io/static/img/icons/${dayInformations.icon}.png`} alt="Icone do Clima" />
             </div>
-            <p className={styles.dayText}>Max: {dayInformations.max_temp}</p>
-            <p className={styles.dayText}>Min: {dayInformations.min_temp}</p>
+            <div className={styles.weather}>
+              <p className={styles.dayText}>Max: {dayInformations.max_temp}</p>
+              <p className={styles.minTemp}>Min: {dayInformations.min_temp}</p>
+            </div>
         </div>
     )
 }

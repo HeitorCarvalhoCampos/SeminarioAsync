@@ -1,8 +1,9 @@
 .dayElement {
     display: flex;
     flex-direction: column;
-    background-color: #ffffff;
+    background-color: #015486;
     padding: 15px;
+    height: 165px;
     width: 100px;
     border-radius: 12px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
@@ -13,7 +14,7 @@
 .dayText {
     font-size: 14px;
     font-weight: bold;
-    color: #333;
+    color: #ffffff;
 }
 
 .divimg {
@@ -36,5 +37,6 @@
 
 .minTemp {
     font-size: 14px;
-    color: #666;
+    font-weight: bold;
+    color: #c4c3c3;
 }

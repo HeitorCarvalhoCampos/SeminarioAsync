@@ -63,14 +63,10 @@ function App() {
           const informacoes: WeekInformation[] = weather.data.map(
             (dia: any) => ({
               data: dia.datetime,
-              high_temp: dia.high_temp + "°C",
-              low_temp: dia.low_temp + "°C",
               max_temp: dia.max_temp + "°C",
               min_temp: dia.min_temp + "°C",
               condicao: dia.weather.description,
-              wind_speed: dia.wind_spd,
-              humidity: dia.rh,
-              rain: dia.precip,
+              icon: dia.weather.icon,
             })
           );
 
