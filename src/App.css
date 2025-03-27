@@ -65,3 +65,30 @@
 .divWeek {
   margin-top: 50px;
 }
+
+.divSearch {
+  display: flex;
+  margin: auto 0;
+}
+
+.divLogoImg {
+  display: flex;
+  margin: auto 0;
+}
+
+
+@media (max-width: 768px) {
+  .logo {
+    margin-top: 5px;
+    width: 180px;
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 625px) {
+  .logo {
+    margin-top: 5px;
+    width: 140px;
+    margin-left: 10px;
+  }
+}

@@ -160,12 +160,16 @@ function App() {
   return (
     <div className="App">
       <div className="divLogo">
-        <img
-          className="logo"
-          src={process.env.PUBLIC_URL + "/logo-climorld.png"}
-          alt="Mundo Clima"
-        />
-        <SearchBar onSearch={handleSearch} />
+        <div className="divLogoImg">
+          <img
+            className="logo"
+            src={process.env.PUBLIC_URL + "/logo-climorld.png"}
+            alt="Mundo Clima"
+          />
+        </div>
+        <div className="divSearch">
+          <SearchBar onSearch={handleSearch} />
+        </div>
       </div>
       <div className="divInformations">
         <Information informacoes={informacoes} />

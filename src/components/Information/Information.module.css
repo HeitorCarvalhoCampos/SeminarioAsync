@@ -82,6 +82,137 @@
     margin: 7px 0;
 }
 
+@media (max-width: 768px) {
+    .divInfo {
+        width: 500px;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    .divTemperatura {
+        width: 90px;
+        margin-left: 15px;
+    }
 
+    .temperatura {
+        display: flex;
+        font-size: 48px;
+    }
+
+    .grau {
+        font-size: 20px;
+        margin-top: 7px;
+    }
+
+    .icon {
+        width: 70px;
+    }
+
+    .divExtras {
+        display: flex;
+        align-items: center;
+        font-size: 8px;
+        height: 80px;
+        margin-left: 40px;
+    }
+
+    .extras {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .extra {
+        justify-content: left;
+        width: 80px;
+        margin: 2px 0;  
+    }
+    
+    .cidade {
+        font-size: 28px;
+        height: 20px;
+        margin-left: 10px;
+    }
+
+    .divDescricao {
+        margin-left: 30px;
+        font-size: 14px;
+    }
+    
+    .descricao {
+        margin: 4px 0;
+    }
+    
+    .diaSemana {
+        margin: 4px 0;
+    }
+}
+
+@media (max-width: 625px) {
+    .divInfo {
+        width: 400px;
+        padding: 10px;
+        border-radius: 7px;
+    }
+
+    .divTemperatura {
+        width: 80px;
+        margin-left: 10px;
+    }
+
+    .temperatura {
+        display: flex;
+        font-size: 32px;
+    }
+
+    .grau {
+        font-size: 18px;
+        margin-top: 3px;
+    }
+
+    .icon {
+        width: 60px;
+    }
+
+    .divExtras {
+        display: flex;
+        align-items: center;
+        font-size: 5px;
+        height: 60px;
+        margin-left: 20px;
+    }
+
+    .extras {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .extra {
+        justify-content: left;
+        width: 40px;
+        margin: 1px 0;  
+    }
+    
+    .cidade {
+        font-size: 24px;
+        height: 20px;
+        margin-left: 10px;
+    }
+
+    .divDescricao {
+        margin-left: 30px;
+        font-size: 12px;
+    }
+    
+    .descricao {
+        margin: 3px 0;
+    }
+    
+    .diaSemana {
+        justify-content: left;
+        margin: 3px 0;
+    }
+}
 
 

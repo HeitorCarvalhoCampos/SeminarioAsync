@@ -1,15 +1,15 @@
 .weekBar {
     display: flex;
     gap: 15px;
-    overflow-x: auto;
+    overflow-x: hidden;
     padding: 10px;
     height: fit-content;
-    justify-content: center; /* Centraliza os cards na tela */
-    scrollbar-width: thin; /* Deixa a barra de rolagem mais discreta */
+    justify-content: center;
+    scrollbar-width: thin;
     scrollbar-color: #ccc transparent;
+    flex-wrap: wrap;
 }
 
-/* Personaliza a barra de rolagem para navegadores Webkit */
 .weekBar::-webkit-scrollbar {
     height: 8px;
 }
