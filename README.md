@@ -5,6 +5,8 @@ O porojeto tem a objetivo de ser uma ferramenta de previsão do tempo. Ao acessa
 
 Utilizamos rotas API dispníveis em "https://www.weatherbit.io/api/" para buscar e retornar as previsões.
 
+!! A chave da API expira dia 8/4, após esse período será necessário atualizar a chave no código !!
+
 ### Aceso ao site
 
 - [Link do site](https://climorld.onrender.com/)
