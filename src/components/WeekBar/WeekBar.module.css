@@ -1,7 +1,7 @@
 .weekBar {
     display: flex;
-    gap: 15px;
-    overflow-x: hidden;
+    gap: 6px;
+    overflow: hidden;
     padding: 10px;
     height: fit-content;
     justify-content: center;

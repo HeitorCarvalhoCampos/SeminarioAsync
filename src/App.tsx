@@ -24,13 +24,17 @@ interface WeekInformation {
 }
 
 function App() {
-  const apiKey = "d8235fe0545e4dd8adf7186f2c647f73";
+  const apiKey = "a509bb8740674f48a6dea3a1492b3d54";
   const [informacoes, setInformacoes] = useState<Informacao[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [weekInformacoes, setWeekInformacoes] = useState<WeekInformation[]>([]);
   const today = new Date();
 
   function handleSearch(query: string) {
+    if (!query.trim()) {
+      console.warn("Digite uma cidade para buscar!");
+      return;
+    }
     setSearchQuery(query);
     fetch(`https://api.weatherbit.io/v2.0/current?city=${query}&key=${apiKey}`)
       .then(response => response.json())
@@ -54,8 +58,8 @@ function App() {
       )
         .then((response) => response.json())
         .then((weather) => {
-          if (!weather.data || weather.data.length < 8) {
-            console.error("Dados insuficientes da previsão do tempo.");
+          if (!weather.data || weather.data.length === 0) {
+            console.error("Nenhum dado de previsão disponível.");
             return;
           }
 
@@ -118,8 +122,8 @@ function App() {
             )
               .then((response) => response.json())
               .then((weather) => {
-                if (!weather.data || weather.data.length < 8) {
-                  console.error("Dados insuficientes da previsão do tempo.");
+                if (!weather.data || weather.data.length === 0) {
+                  console.error("Nenhum dado de previsão disponível.");
                   return;
                 }
                 
@@ -149,7 +153,7 @@ function App() {
   function getDayOfWeek(dataString: string) {
     const data = new Date(dataString);
 
-    const diasSemana = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
+    const diasSemana = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
 
     const indiceDiaSemana = data.getDay();
 

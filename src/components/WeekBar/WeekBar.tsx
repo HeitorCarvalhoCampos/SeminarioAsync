@@ -16,7 +16,7 @@ interface WeekInformationProps {
 function WeekBar({ weekInformations }: WeekInformationProps) {
   return (
     <div className={style.weekBar}>
-      {weekInformations.length >= 8 ? (
+      {weekInformations.length > 0 ? (
         <>
           {weekInformations.slice(0, 8).map((info, index) => (
             <DayElement key={index} dayInformations={info} />

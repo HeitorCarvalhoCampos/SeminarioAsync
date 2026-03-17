@@ -11,11 +11,16 @@ function SearchBar({onSearch}: SearchBarProps) {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (query.trim() === "") {
+      alert("Digite uma cidade para pesquisar!");
+      return;
+    }
     onSearch(query);
+    setQuery("");
   }
 
   return (
-    <form className={styles.bar} onClick={handleSubmit}>
+    <form className={styles.bar} onSubmit={handleSubmit}>
       <input 
         className={styles.input} 
         type="text" 
